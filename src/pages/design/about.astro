@@ -1,0 +1,64 @@
+---
+import '../../global.css'
+import DesignLayout from '../../layouts/design.astro'
+
+const techStack = ['React', 'Vue', 'Astro', 'TypeScript', 'Node.js', 'Python', 'Electron', 'Ant Design', 'AntV']
+---
+
+<DesignLayout title="关于我" description="个人简介和经历介绍">
+  <section class="max-w-2xl mx-auto px-4 py-8 pt-40">
+    <div class="space-y-8">
+      <div class="prose prose-lg">
+        <p class="text-lg">我是@meanc，前端开发者。</p>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">个人经历</h2>
+        <div class="space-y-4">
+          <div class="p-4 rounded-lg bg-[var(--bg-color)] border border-[var(--secondary-btn-color)]">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium">2016-2020</span>
+            </div>
+            <div class="mt-2">
+              <div class="font-medium">软件工程专业</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-[var(--bg-color)] border border-[var(--secondary-btn-color)]">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium">2022-2024.8</span>
+            </div>
+            <div class="mt-2">
+              <div class="font-medium">数据平台开发</div>
+              <div class="text-sm text-[var(--secondary-color)]">某互联网公司</div>
+              <div class="text-sm text-[var(--btn-color)] mt-1">主做b端数据分析平台开发，大屏和数据看板等</div>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-lg bg-[var(--bg-color)] border border-[var(--secondary-btn-color)]">
+            <div class="flex items-center gap-2">
+              <span class="text-sm font-medium">2024.12-至今</span>
+            </div>
+            <div class="mt-2">
+              <div class="font-medium">AI招聘开发</div>
+              <div class="text-sm text-[var(--secondary-color)]">某招聘公司</div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">技术栈</h2>
+        <div class="flex flex-wrap gap-2">
+          {techStack.map((tech) => <span class="px-3 py-1 rounded-full text-sm bg-[var(--bg-color)] text-[var(--primary-color)] border border-[var(--secondary-btn-color)]">{tech}</span>)}
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">社交媒体</h2>
+        <div class="space-y-2">
+          <a href="https://github.com/cloudflypeng" target="_blank" class="flex items-center gap-2 text-[var(--primary-color)] hover:text-[var(--secondary-color)]">
+            <span>GitHub: github.com/meanc</span>
+          </a>
+          <a href="https://x.com/meanc_p" target="_blank" class="flex items-center gap-2 text-[var(--primary-color)] hover:text-[var(--secondary-color)]">
+            <span>Twitter: x.com/meanc_p</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</DesignLayout>

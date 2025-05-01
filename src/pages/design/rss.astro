@@ -1,0 +1,19 @@
+---
+title: 'RSS'
+import '../../global.css'
+import CopyButton from '../../components/copyButton'
+import DesignLayout from '../../layouts/design.astro'
+const rssUrl = 'http://xlog.meanc.cc/feed'
+const foloUrl = `follow://add?url=${rssUrl}`
+---
+
+<DesignLayout title="RSS" description="RSS">
+  <div class="flex flex-col gap-3 h-screen pl-20 pt-50">
+    <h1 class="text-3xl font-bold">You can subscribe to my RSS feed</h1>
+    <CopyButton text="https://xlog.meanc.cc/feed" client:load />
+    <h1 class="text-3xl font-bold mt-3">You can also use Folo(Follow)</h1>
+    <div class="flex items-center gap-2">
+      <a href={foloUrl} class="text-white/80 bg-[#A78A7F] px-4 py-2 rounded-md cursor-pointer w-auto inline-block">Follow me on Folo</a>
+    </div>
+  </div>
+</DesignLayout>

@@ -1,0 +1,43 @@
+---
+import TextBanner from '../components/TextBanner'
+import { ClientRouter } from 'astro:transitions'
+let url = Astro.url.pathname
+const SITE_TITLE = "Meanc's Blog"
+const SITE_URL = 'https://meanc.me'
+
+interface Props {
+  title: string
+  description: string
+}
+---
+
+<html class="h-full" lang="zh-Hans">
+  <head>
+    <!-- Global Metadata -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="icon" type="image/png" href="/avatar-cropped.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="alternate" type="application/rss+xml" title={SITE_TITLE} href="/rss.xml" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <!-- <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} /> -->
+    <meta property="og:image" content={SITE_URL + '/avatar.png'} />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary" />
+    <meta property="twitter:url" content={Astro.url} />
+    <!-- <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} /> -->
+    <meta property="twitter:image" content={SITE_URL + '/avatar.png'} />
+    <ClientRouter />
+  </head>
+  <body class="bg-[#E7D7C1]">
+    <TextBanner client:load transition:persist url={url} />
+    <slot />
+  </body>
+</html>

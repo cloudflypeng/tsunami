@@ -1,16 +1,29 @@
 ---
+import '../global.css'
+import { getCollection } from 'astro:content'
+import BaseLayout from '../layouts/base.astro'
+// @ts-ignore
+import { format } from 'date-fns'
 
+const posts = await getCollection('posts')
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
+<BaseLayout title="Meanc's Blog" description="Meanc's Blog">
 	<body>
-		<h1>Astro</h1>
+		<ul class="flex gap-10 w-full flex-wrap justify-center px-10">
+			{
+				posts.map((post) => (
+					<li class="aspect-video w-80 group text-white/70 bg-black/70 rounded-lg overflow-hidden">
+						<a href={`/posts/${post.data.slug}`} class="w-full h-full block hover:text-cy relative rounded-md overflow-hidden">
+							{post.data.cover ? <img src={post.data.cover} alt={post.data.title} class="w-full h-full object-cover group-hover:scale-110 transition-all duration-300" /> : null}
+							<div class="absolute top-0 left-0 w-full h-full bg-black/70 p-5">
+								<h2 class="text-lg font-bold group-hover:translate-y-3 translate-y-0 transition-all duration-300">{post.data.title}</h2>
+							</div>
+							<span class="text-nowrap text-xs font-mono absolute bottom-0 left-0 px-5 pb-2">{format(post.data.date, 'yyyy/MM/dd')}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
 	</body>
-</html>
+</BaseLayout>

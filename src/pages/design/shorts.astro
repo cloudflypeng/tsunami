@@ -1,0 +1,60 @@
+---
+import '../../global.css'
+import DesignLayout from '../../layouts/design.astro'
+import { getCollection } from 'astro:content'
+// @ts-ignore
+import { format } from 'date-fns'
+
+const shorts = await getCollection('shorts')
+---
+
+<DesignLayout title="设计短片" description="设计相关的短视频内容">
+  <section class="max-w-2xl mx-auto px-4 py-8 pt-40">
+    <div class="relative">
+      <!-- 时间轴线 -->
+      <div class="absolute left-0 h-full w-px bg-gradient-to-b from-[#735751] to-transparent"></div>
+      {shorts.length === 0 && (
+        <div class="text-center text-gray-500">
+          暂无内容
+        </div>
+      )}
+      
+      <ul class="space-y-6">
+        {
+          shorts?.map((short) => (
+            <li class="relative pl-6">
+              <!-- 时间轴节点 -->
+              <div class="absolute left-[1px] w-2 h-2 rounded-full bg-[#8C1C13] transform -translate-x-1/2"></div>
+              <div>
+                <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
+                  {short.data.attachments.map((attachment) => (
+                    <div class="snap-center flex-shrink-0">
+                      <img 
+                        src={attachment.address} 
+                        alt={short.data.title} 
+                        class="w-[80vw] max-w-[600px] h-auto rounded-lg object-cover"
+                      />
+                    </div>
+                  ))}
+                </div>
+                <div class="text-sm text-[#735751] mt-2">
+                  {short.data.title} · {format(short.data.date, 'yyyy/MM/dd')}
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</DesignLayout>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style> 

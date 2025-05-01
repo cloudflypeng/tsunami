@@ -1,0 +1,31 @@
+---
+import '../../global.css'
+import DesignLayout from '../../layouts/design.astro'
+import { getCollection } from 'astro:content'
+// @ts-ignore
+import { format } from 'date-fns'
+import HoverPost from '../../components/hoverPost'
+
+const posts = await getCollection('posts')
+---
+
+<DesignLayout title="设计文章" description="设计相关的文章和思考">
+  <section class="max-w-2xl mx-auto px-4 py-8 pt-40">
+    <div class="relative">
+      <!-- 时间轴线 -->
+      <div class="absolute left-0 h-full w-px bg-gradient-to-b from-[#735751] to-transparent"></div>
+      
+      <ul class="space-y-6">
+        {
+          posts.map((post) => (
+            <li class="relative pl-6">
+              <!-- 时间轴节点 -->
+              <div class="absolute left-[1px] w-2 h-2 rounded-full bg-[#8C1C13] transform -translate-x-1/2"></div>
+              <HoverPost client:load post={post.data} date={format(post.data.date, 'yyyy/MM/dd')} title={post.data.title} />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</DesignLayout> 
