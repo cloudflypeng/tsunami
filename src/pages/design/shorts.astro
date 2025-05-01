@@ -1,11 +1,13 @@
 ---
 import '../../global.css'
 import DesignLayout from '../../layouts/design.astro'
-import { getCollection } from 'astro:content'
+
 // @ts-ignore
 import { format } from 'date-fns'
 
-const shorts = await getCollection('shorts')
+// import { getCollection } from 'astro:content'
+// const shorts = await getCollection('shorts')
+const shorts: any[] = []
 ---
 
 <DesignLayout title="设计短片" description="设计相关的短视频内容">
@@ -27,7 +29,7 @@ const shorts = await getCollection('shorts')
               <div class="absolute left-[1px] w-2 h-2 rounded-full bg-[#8C1C13] transform -translate-x-1/2"></div>
               <div>
                 <div class="flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide">
-                  {short.data.attachments.map((attachment) => (
+                  {short.data.attachments.map((attachment: any) => (
                     <div class="snap-center flex-shrink-0">
                       <img 
                         src={attachment.address} 
