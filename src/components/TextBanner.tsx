@@ -66,13 +66,13 @@ const TextBanner = ({ url }: { url: string }) => {
   }
 
   return (
-    <section className="flex gap-4 items-center h-30 overflow-x-hidden pl-20 fixed z-1000 top-0 left-0 w-full">
+    <section className="flex flex-wrap items-center overflow-x-hidden px-5 md:px-20 pt-1 fixed z-1000 top-0 left-0 w-full bg-gradient-to-b from-white/10 via-white/5 to-transparent backdrop-blur-sm ">
       {/* blur 部分，为了精准控制高度 */}
-      <div className="absolute top-0 backdrop-blur-sm left-0 w-full h-23 bg-gradient-to-b from-white/10 via-white/5 to-transparent blur-sm -z-1"></div>
+      {/* <div className="absolute top-0 backdrop-blur-sm left-0 w-full h-23 -z-1"></div> */}
       <AnimatePresence mode="wait">
         {renderList.map((item) => (
           <motion.div
-            className="cursor-pointer origin-left text-[#8C1C13]"
+            className="cursor-pointer origin-left text-[#8C1C13] mr-3"
             key={item.title}
             layout
             initial={{
