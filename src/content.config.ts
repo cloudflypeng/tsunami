@@ -7,8 +7,8 @@ const posts = defineCollection({
 
 export const collections = { posts }
 
-// const shorts = defineCollection({
-//   loader: shortsLoader({ handle: 'meanc-9641' }),
-// })
+const shorts = defineCollection({
+  loader: shortsLoader({ handle: 'meanc-9641' }),
+})
 
-// export const collections = { posts, shorts }
+export const collections = { posts, shorts }

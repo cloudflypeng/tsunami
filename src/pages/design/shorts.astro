@@ -5,9 +5,9 @@ import DesignLayout from '../../layouts/design.astro'
 // @ts-ignore
 import { format } from 'date-fns'
 
-// import { getCollection } from 'astro:content'
-// const shorts = await getCollection('shorts')
-const shorts: any[] = []
+import { getCollection } from 'astro:content'
+const shorts = await getCollection('shorts')
+// const shorts: any[] = []
 ---
 
 <DesignLayout title="设计短片" description="设计相关的短视频内容">
