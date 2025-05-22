@@ -26,7 +26,6 @@ const tab = [
 
 
 const TextBanner = ({ url }: { url: string }) => {
-
   const [loading, setLoading] = useState(true)
   const [renderList, setRenderList] = useState(tab)
   const [active, setActive] = useState(tab[0].href)
@@ -54,7 +53,7 @@ const TextBanner = ({ url }: { url: string }) => {
       }
     }
     document.addEventListener('astro:page-load', urlToData)
-
+    urlToData()
     return () => {
       document.removeEventListener('astro:page-load', urlToData)
     }
@@ -66,24 +65,26 @@ const TextBanner = ({ url }: { url: string }) => {
   }
 
   return (
-    <section className="flex flex-wrap items-center overflow-x-hidden px-5 md:px-20 pt-1 fixed z-1000 top-0 left-0 w-full bg-gradient-to-b from-white/10 via-white/5 to-transparent backdrop-blur-sm ">
+    <section className="flex flex-wrap flex-end h-32 overflow-x-hidden px-5 md:px-20 pt-1 fixed z-1000 top-0 left-0 w-full bg-gradient-to-b from-white/10 via-white/5 to-transparent backdrop-blur-sm ">
       {/* blur 部分，为了精准控制高度 */}
       {/* <div className="absolute top-0 backdrop-blur-sm left-0 w-full h-23 -z-1"></div> */}
       <AnimatePresence mode="wait">
         {renderList.map((item) => (
           <motion.div
-            className="cursor-pointer origin-left text-[#8C1C13] mr-3"
+            className="cursor-pointer origin-left text-[#8C1C13] mr-3 align-baseline flex"
             key={item.title}
             layout
             initial={{
               fontSize: '1rem',
               opacity: 0.5,
               x: 0,
-              scale: 1
+              scale: 1,
+              alignItems: 'flex-end'
             }}
             animate={{
               fontSize: active === item.href ? '5rem' : '1rem',
               opacity: active === item.href ? 1 : 0.5,
+              y: active === item.href ? 0 : -30,
               x: active === item.href ? 0 : 20,
             }}
             transition={{
